@@ -1,12 +1,13 @@
 'use client'
 import { uuids } from '@/functions/uuids';
-import { Message, RouteNames, Ticket, useApi, User, Vote } from '@/hooks/useApi';
+import { Message, RouteNames, Ticket, User, Vote } from '@/types/velocityVotes.schema';
 import { Mock_Admin } from '@/mocks/admin';
 import { Mock_Message_1, Mock_Message_2 } from '@/mocks/message';
 import { Mock_Ticket_1, Mock_Ticket_2, Mock_Ticket_3, Mock_Ticket_4, Mock_Ticket_5 } from '@/mocks/tickets';
 import { Mock_User_1, Mock_User_2, Mock_User_3, Mock_User_4 } from '@/mocks/user';
 import { Mock_Vote_1, Mock_Vote_2, Mock_Vote_3, Mock_Vote_4, Mock_Vote_5 } from '@/mocks/votes';
 import { CSSProperties } from 'react';
+import { useApi } from '@/hooks/useApi';
 
 const TestRoom = 'abcdef'
 const ApiTestPage: React.FC = () => {
@@ -51,7 +52,7 @@ const ApiTestPage: React.FC = () => {
         await callApi<RouteNames.deleteVote>(RouteNames.deleteVote, TestRoom, { userId, ticketId });
     }
     const SendMessage = async (message: Message) => {
-        await callApi<RouteNames.addMessage>(RouteNames.addMessage, TestRoom, message);
+        await callApi<RouteNames.addMessage>(RouteNames.addMessage, TestRoom, { userId: message.userId, message: message.message });
     }
     const SendReaction = async (messageId: string, userId: string, reaction: string) => {
         await callApi<RouteNames.reactToMessage>(RouteNames.reactToMessage, TestRoom, { messageId, userId, reaction });

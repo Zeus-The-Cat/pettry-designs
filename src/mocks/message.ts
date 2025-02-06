@@ -1,4 +1,4 @@
-import { Message } from "@/hooks/useApi";
+import { Message } from "@/types/velocityVotes.schema";
 
 export const Mock_Message_1: Message = {
     messageId: "m-1",

@@ -1,4 +1,5 @@
-import { Ticket } from "@/hooks/useApi";
+import { Ticket } from "@/types/velocityVotes.schema";
+
 export const Mock_Ticket_1: Ticket = {
     id: 't-1',
     title: "Ticket 1",

@@ -1,4 +1,3 @@
-import { uuids } from "@/functions/uuids";
 
 export const Mock_Admin = {
     id: 'a-1',

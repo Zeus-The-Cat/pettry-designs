@@ -1,4 +1,4 @@
-import { Vote } from "@/hooks/useApi";
+import { Vote } from "@/types/velocityVotes.schema";
 
 export const Mock_Vote_1: Vote = {
     userId: "u-1",
