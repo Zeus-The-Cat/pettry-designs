@@ -1,5 +1,4 @@
 'use client'
-import { uuids } from '@/functions/uuids';
 import { Message, RouteNames, Ticket, User, Vote } from '@/types/velocityVotes.schema';
 import { Mock_Admin } from '@/mocks/admin';
 import { Mock_Message_1, Mock_Message_2 } from '@/mocks/message';

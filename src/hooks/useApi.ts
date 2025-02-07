@@ -1,13 +1,19 @@
 "use client";
-import { RouteNames, routeSchemas } from "@/types/velocityVotes.schema";
+import {
+    BaseRoom,
+    RouteNames,
+    routeSchemas,
+} from "@/types/velocityVotes.schema";
 import { useCallback, useState } from "react";
 import { z } from "zod";
+import useLocalStorageState from "./useLocalStorage";
 
 const BaseRoute = "http://localhost:8787";
 export const useApi = () => {
-    const [response, setResponse] = useState<any>(null);
+    const [response, setResponse] = useState<BaseRoom | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const { setState } = useLocalStorageState();
 
     const callApi = useCallback(
         async <T extends RouteNames>(
@@ -39,13 +45,18 @@ export const useApi = () => {
                 }
 
                 setResponse(data);
-            } catch (err: any) {
-                setError(err.message);
+                setState(data as BaseRoom);
+            } catch (err) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError("An unknown error occurred");
+                }
             } finally {
                 setLoading(false);
             }
         },
-        [],
+        [setState],
     );
 
     return { callApi, loading, error, response };

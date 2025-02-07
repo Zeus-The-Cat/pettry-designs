@@ -1,4 +1,4 @@
-import { set, z } from "zod";
+import { z } from "zod";
 
 // Define schemas
 export const UserSchema = z.object({
@@ -64,8 +64,7 @@ export enum RouteNames {
 export enum NoBodyRoutes {
     clearVotes = "clearVotes",
 }
-
-export const routeSchemas: Record<RouteNames | string, z.ZodSchema<any>> = {
+export const routeSchemas: Record<RouteNames, z.ZodSchema> = {
     [RouteNames.createRoom]: CreateRoomSchema,
     [RouteNames.setRoomName]: z.object({ roomName: z.string() }),
     [RouteNames.setRoomSetting]: z.object({ setting: z.string() }),
@@ -108,10 +107,10 @@ export type Ticket = z.infer<typeof TicketSchema>;
 export type Message = z.infer<typeof MessageSchema>;
 export type Reaction = z.infer<typeof ReactionSchema>;
 
-interface ApiResponse<T> {
-    data?: T;
-    error?: string;
-}
+// interface ApiResponse<T> {
+//     data?: T;
+//     error?: string;
+// }
 
 export type BaseRoom = {
     admin: User | null;
