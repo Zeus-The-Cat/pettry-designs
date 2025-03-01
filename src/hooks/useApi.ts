@@ -8,7 +8,9 @@ import { useCallback, useState } from "react";
 import { z } from "zod";
 import useLocalStorageState from "./useLocalStorage";
 
-const BaseRoute = "http://localhost:8787";
+const BaseRoute = process.env.NODE_ENV === "development"
+    ? "http://localhost:8787"
+    : process.env.DURABLE_OBJECT_URL;
 export const useApi = () => {
     const [response, setResponse] = useState<BaseRoom | null>(null);
     const [loading, setLoading] = useState(false);

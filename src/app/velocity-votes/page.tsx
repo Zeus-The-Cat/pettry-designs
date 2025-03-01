@@ -35,5 +35,6 @@ export default function VelocityVotePage() {
                 <Button onClick={handleJoinRoom} title="Join Room"></Button>
             </div>
         </div>
+
     )
 }

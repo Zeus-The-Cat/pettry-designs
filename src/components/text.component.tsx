@@ -34,5 +34,5 @@ export const Text: React.FC<TextProps> = ({ level, className, children }) => {
         fontSize: getSize(level),
     };
 
-    return <div className={`text-txt dark:text-dark-txt ${className ?? ''}`} style={style}>{children}</div>;
+    return <div className={`${className ?? ''} text-txt dark:text-dark-txt`} style={style}>{children}</div>;
 };
